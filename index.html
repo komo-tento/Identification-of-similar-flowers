@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/css/index.css" media="screen and (max-width:320px)">
+    <link rel="stylesheet" href="./static/css/index.css" media="screen and (max-width:768px)">
+    <link rel="stylesheet" href="./static/css/index.css" media="screen and (max-width:1200px)">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <title>ess6-1</title>
+</head>
+<body>
+    <h3>類似花分類アプリケーション</h3>
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/jpg, image/jpeg" id="file-input">
+        <div id="image-container">
+            <img id="image-preview" src="#" alt="画像プレビュー">
+        </div>
+        <button type="submit">推論</button>
+    </form>
+    
+    
+    <script>
+        // 画像が選択されたときにプレビューを表示
+        const fileInput = document.getElementById('file-input');
+        const imagePreview = document.getElementById('image-preview');
+        
+        fileInput.addEventListener('change', function () {
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                };
+                
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        });
+    </script>
+</body>
+<footer>©2023 Komo Takizawa</footer>
+</html>
